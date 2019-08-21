@@ -115,6 +115,18 @@
             
             </ul>
             </li>
+
+            <li>
+            <a href="javascript: void(0);"><i class="fi-layers"></i> <span>Bank Report </span> <span class="menu-arrow"></span></a>
+            <ul class="nav-second-level" aria-expanded="false">
+              
+                <li><a href="apps-tickets.html">Current Month</a></li>
+                <li><a href="apps-tickets.html">History</a></li>
+             
+            
+            </ul>
+            </li>
+    
     
 
 
