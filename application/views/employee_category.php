@@ -21,9 +21,8 @@
                     <form action="<?php echo base_url(); ?>admin/CreateEmployeeCategory" method="POST">
                         <div class="form-group">
                             <!-- <label>Category<span class="text-danger">*</span></label> -->
-
                             <input type="text" class="form-control"  name="category"
-                                value=" <?php echo set_value('category'); ?>" placeholder="Create Category">
+                            value=" <?php echo set_value('category'); ?>" placeholder="Create Category">
                             <?php echo form_error('category'); ?>
                         </div>
 
@@ -46,14 +45,15 @@
                             </thead>
                             <tbody>
 
-
+                                <?php foreach( $categories as $category) { ?>
 
                                 <tr>
-                                    <td>Test</td>
+                                   <td><?php echo $category ['cat_name']; ?></td>
                                     <td> <a href="#" class="btn btn-sm btn-custom"><i
                                                 class="mdi mdi-table-edit"></i></a>
-                                        <a href="#" class="btn btn-sm btn-danger"><i class="mdi mdi-minus"></i></a></td>
+                                        <a href="<?php base_url('admin/DeleteEmployeeCategory/'.$category['cat_id']);?>" class="btn btn-sm btn-danger"><i class="mdi mdi-minus"></i></a></td>
                                 </tr>
+                                <?php } ?>
 
                             </tbody>
                         </table>
