@@ -11,12 +11,13 @@
 <!-- App favicon -->
 <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 <!-- Plugins css -->
-<link href="<?php echo base_url(); ?>plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
 <!-- App css -->
 
@@ -78,7 +79,7 @@
 <li>
 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Employee </span> <span class="menu-arrow"></span></a>
 <ul class="nav-second-level" aria-expanded="false">
-    <li><a href="apps-calendar.html">Add Employee</a></li>
+    <li><a href="<?php echo base_url('admin/employeeAdd'); ?>">Add Employee</a></li>
     <li><a href="apps-tickets.html">View All Employee</a></li>
 
 </ul>
@@ -107,7 +108,7 @@
         <li>
             <a href="javascript: void(0);"><i class="fi-layers"></i> <span> General </span> <span class="menu-arrow"></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li><a href="apps-calendar.html">Category</a></li>
+                <li><a href="<?php echo base_url('admin/EmployeeCategory'); ?>">Category</a></li>
                 <li><a href="apps-tickets.html">Rate</a></li>
                 <li><a href="apps-tickets.html">CDF / LIC /FDA</a></li>
                 <li><a href="apps-tickets.html">Office Accounts</a></li>
