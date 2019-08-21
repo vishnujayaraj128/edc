@@ -12,14 +12,10 @@ class admin extends CI_Controller {
 		// dashboard
 		$this->load->view('dashoboard');
 	}
-	public function employeeAdd()
-	{
-		// add employee page
-		$this->load->view('employee_add');
-	}
+	
 	public function EmployeeCategory()
 	{
-		//$this->load->view('employee_category');
+
 		// view EmployeeCategory
 		$EmployeeCategory['categories']=$this->queries->fetchCategory();
 		$this->load->view('employee_category',$EmployeeCategory);
@@ -33,8 +29,9 @@ class admin extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			redirect(base_url('admin/EmployeeCategory'));
-			//$this->load->view('employee_category');
+			// redirect(base_url('admin/EmployeeCategory'));
+			$this->EmployeeCategory();
+			// $this->load->view('employee_category');
 			// redirect('admin/EmployeeCategory', 'refresh');	
 		}
 		else
@@ -54,8 +51,88 @@ class admin extends CI_Controller {
 	{
 		// Delete EmployeeCategory
 		$this->queries->DeleteCategory($deletecategory);
-		redirect(base_url('admin/EmployeeCategory'));
+		$this->session->set_flashdata('categoryDeleted','Successfully Deleted Category');
+		$this->EmployeeCategory();
+		
 	}
+
+	//edit category
+
+
+	public function EditEmployeeCategory($EditID){		
+	$data['editCategoryID']= $this->queries->EditCategory($EditID);
+
+	$this->load->view('employee_category_update',$data);
+	
+
+	}
+
+	public function updateEmployeeCategory($categoryUpdateID)
+	{
+		$this->form_validation->set_rules('category','Category','required');	
+		$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			// redirect(base_url('admin/EmployeeCategory'));
+			$this->employee_category_update();
+			// $this->load->view('employee_category');
+			// redirect('admin/EmployeeCategory', 'refresh');	
+		}
+		else
+		{
+			$employeeUpdateCategory=$this->input->post('category');
+			$updateCategory = array(
+			"cat_name" => $employeeUpdateCategory
+			);			
+			$this->queries->updateCategory($updateCategory,$categoryUpdateID);
+			$this->session->set_flashdata('categoryUpdate','Successfully Updated Category');
+			$this->EmployeeCategory();
+			
+		
+		}
+	}
+
+
+// ********************************************************************************
+// ********************************************************************************
+// Create Employee
+// ********************************************************************************
+// ********************************************************************************
+
+
+public function employeeAdd()
+{
+	// add employee page
+
+	$EmployeeCategory['categories']=$this->queries->fetchCategory();	
+	$this->load->view('employee_add',$EmployeeCategory);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 	
 

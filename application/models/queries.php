@@ -16,11 +16,38 @@ class queries extends CI_Model{
         return $query->result_array();
     }
 
-       public function DeleteCategory($deleteid)
+       public function DeleteCategory($deletecategory)
     {
-       $this->db->where('cat_id',$deleteid);
+       $this->db->where('cat_id',$deletecategory);
        $this->db->delete('category');
     }
+
+    public function EditCategory($EditID){
+
+        $this->db->where("cat_id", $EditID);
+        $query=$this->db->get('category');
+        return $query->row_array();
+
+
+    }
+
+    public function updateCategory($updateCategory,$categoryUpdateID)
+
+    {
+        $this->db->where("cat_id",$categoryUpdateID);
+        return $this->db->update('category',$updateCategory);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
