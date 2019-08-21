@@ -80,8 +80,8 @@
 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Employee </span> <span class="menu-arrow"></span></a>
 <ul class="nav-second-level" aria-expanded="false">
     <li><a href="<?php echo base_url('admin/employeeAdd'); ?>">Add Employee</a></li>
-    <li><a href="apps-tickets.html">View All Employee</a></li>
-
+    <li><a href="<?php echo base_url('admin/allEmployees'); ?>">View All Employee</a></li>
+    
 </ul>
 </li>
 
