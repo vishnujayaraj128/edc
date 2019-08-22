@@ -341,10 +341,10 @@ public function UpdateRateAmount($UpdateRateAmountid)
  public function OfficeAccounts()
  {
 // 	// View Office Accounts
- 	 $OfficeAccounts['accounts'] = $this->queries->fetchOfficeAccounts();
+ 	 $data['accounts'] = $this->queries->fetchOfficeAccounts();
  	// print_r( $OfficeAccounts['accounts']);
  	 //exit();
-     $this->load->view('office_accounts',$OfficeAccounts);
+     $this->load->view('office_accounts',$data);
 }
 
  public function CreateOfficeAccounts()
@@ -369,52 +369,55 @@ public function UpdateRateAmount($UpdateRateAmountid)
 			);	
 
  		$this->queries->insertOfficeAccounts($accounts);
-		$this->session->set_flashdata('accountsuccess','Successfully Created New Office Accounts');
+		$this->session->set_flashdata('accountSuccess','Successfully Created New Office Accounts');
 		redirect(base_url('admin/OfficeAccounts'));
 		}
 }
 
-// public function DeleteOfficeAccount($DeleteOfficeAccount)
-// {
-// 	$this->queries->deleteOfficeAccounts($DeleteOfficeAccount);
-// 	$this->session->set_flashdata('delete','Successfully Deleted Office Account');
-// 	$this->OfficeAccounts();
-// }
+public function DeleteOfficeAccount($DeleteOfficeAccount)
+{
+	$this->queries->deleteOfficeAccounts($DeleteOfficeAccount);
+	$this->session->set_flashdata('deleteAccount','Successfully Deleted Office Account');
+	$this->OfficeAccounts();
+}
 
 
 
-// public function EditOfficeAccount($EditOfficeAccount)
-// {
-// 	$data['editAccountID'] = $this->queries->editOfficeAccounts($EditOfficeAccount);
-// 	$this->load->view('office_accounts_update',$data);
+public function EditOfficeAccount($EditOfficeAccount)
+{
+	$data['editAccountID'] = $this->queries->editOfficeAccounts($EditOfficeAccount);
+	$this->load->view('office_accounts_update',$data);
 
-// }
+}
 
 
-// public function UpdateOfficeAccount($UpdateOfficeAccountid)
-// {
-// 	$this->form_validation->set_rules('acc_name','Account Name','required');
-// 	$this->form_validation->set_rules('acc_number','Account Number','required');
-// 	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+public function UpdateOfficeAccount($UpdateOfficeAccountid)
+{
+	$this->form_validation->set_rules('acc_name','Account Name','required');
+	$this->form_validation->set_rules('acc_number','Account Number','required');
+	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
-// 	if ($this->form_validation->run() == FALSE)
-// 		{
-// 			$this->OfficeAccounts();
-// 		}
-// 	else
-// 		{
-// 		$updateaccounts = array(
-// 		'ac_name' => $this->input->post('acc_name'),
-// 		'ac_number' => $this->input->post('acc_number')
-// 		);
+	if ($this->form_validation->run() == FALSE)
+		{
+			$this->OfficeAccounts();
+		}
+	else
+		{
+		$updateaccounts = array(
+		'ac_name' => $this->input->post('acc_name'),
+		'ac_number' => $this->input->post('acc_number')
+		);
 
-// 		$this->queries->updateOfficeAccounts($updateaccounts,$UpdateOfficeAccountid);
-// 		$this->session->set_flashdata('Update','Successfully Updated Ofice Account');
-// 		$this->OfficeAccounts();
+		$this->queries->updateOfficeAccounts($updateaccounts,$UpdateOfficeAccountid);
+		$this->session->set_flashdata('UpdateAccount','Successfully Updated Ofice Account');
+		$this->OfficeAccounts();
 
-// 		}
+		}
+}
 
-// }
+
+
+
 // // ********************************************************************************
 // // ********************************************************************************
 // // Create Fund Group Name
