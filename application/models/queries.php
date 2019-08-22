@@ -81,6 +81,118 @@ public function singleEmployeeRemove($singleEmployeeDeleteID){
 }
 
 
+// ********************************************************************************
+// ********************************************************************************
+// Create Rate Amount
+// ********************************************************************************
+// ********************************************************************************
+
+public function insertRate($rate)
+{
+   return $this->db->insert('rate',$rate);
+
+}
+
+
+public function fetchRate()
+{
+  
+    $select = $this->db->get('rate');
+    return $select->result_array();
+}
+
+
+
+public function deleteRate($DeleteRateAmountid)
+{
+    $this->db->where('rate_id',$DeleteRateAmountid);
+    $this->db->delete('rate');
+
+}
+
+
+public function editRate($EditRateAmountid)
+{
+    $this->db->where('rate_id',$EditRateAmountid);
+    $editquery=$this->db->get('rate');
+    return $editquery->row_array();
+}
+
+
+public function updateRate($update_amount,$UpdateRateAmountid)
+{
+    $this->db->where('rate_id',$UpdateRateAmountid);
+   return $this->db->update('rate',$update_amount);
+}
+
+
+// ********************************************************************************
+// ********************************************************************************
+// Create Office Accounts
+// ********************************************************************************
+// ********************************************************************************
+
+public function insertOfficeAccounts($accounts)
+{
+    return $this->db->insert('account',$accounts);
+}
+
+
+public function fetchOfficeAccounts()
+{
+    $selectquery = $this->db->get('account');
+    return  $selectquery->result_array();
+}
+
+public function deleteOfficeAccounts($DeleteOfficeAccount)
+{
+    $this->db->where('ac_id',$DeleteOfficeAccount);
+    return $this->db->delete('account');
+
+}
+
+
+public function editOfficeAccounts($EditOfficeAccount)
+{
+    $this->db->where('ac_id',$EditOfficeAccount);
+    $editquery=$this->db->get('account');
+    return $editquery->row_array();
+}
+
+
+
+public function updateOfficeAccounts($updateaccounts,$UpdateOfficeAccountid)
+{
+    $this->db->where('ac_id',$UpdateOfficeAccountid);
+   return $this->db->update('account',$updateaccounts); 
+}
+
+// ********************************************************************************
+// ********************************************************************************
+// Create Fund Group Name
+// ********************************************************************************
+// ********************************************************************************
+
+public function insertFundGroupCategory($fundgroup)
+{
+    return $this->db->insert('fundgroup',$fundgroup);
+}
+
+
+public function fetchFundGroupCategory()
+{
+    $viewquery = $this->db->get('fundgroup');
+    return $viewquery->result_array();
+}
+
+public function deleteFundGroupCategory($DeleteFundGroupCategory)
+{
+    $this->db->where('group_id',$DeleteFundGroupCategory);
+    return  $this->db->delete('fundgroup');
+}
+
+
+
 
 
 

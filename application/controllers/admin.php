@@ -42,7 +42,7 @@ class admin extends CI_Controller {
 			"cat_name" => $employeeCategory
 			);			
 			$this->queries->insertCategory($category);
-			$this->load->view('employee_category');
+			//$this->load->view('employee_category');
 			$this->session->set_flashdata('category','Successfully Created New Category');
 			redirect(base_url('admin/EmployeeCategory'));
 		}
@@ -215,8 +215,6 @@ public function employeeInsert(){
 		   	'emp_photo'                =>$user_image,
 			'age'                  =>$age,
 			'emp_created_at'        =>$createdAt
-			
-
 		  
 		   );
 
@@ -254,6 +252,224 @@ public function singleEmployeeedit($singleEmployeeEditID)
 	// $this->session->set_flashdata('delete','Successfully Deleted Employee');
 	// $this->allEmployees();
 }
+
+
+// ********************************************************************************
+// ********************************************************************************
+// Create Rate Amount
+// ********************************************************************************
+// ********************************************************************************
+public function RateAmount()
+{
+	$RateAmount['amounts'] = $this->queries->fetchRate();
+	$this->load->view('employee_rate',$RateAmount);
+}
+
+
+
+public function CreateRateAmount()
+{
+	$this->form_validation->set_rules('rate_amount','Rate Amount','required');	
+	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+	if ($this->form_validation->run() == FALSE)
+		{
+			$this->RateAmount();
+			
+		}
+	else
+	{
+			$rateAmount=$this->input->post('rate_amount');
+			$rate = array(
+			"rate_amount" => $rateAmount
+			);			
+			$this->queries->insertRate($rate);
+			//$this->load->view('employee_category');
+			$this->session->set_flashdata('rate','Successfully Created New Rate Amount');
+			redirect(base_url('admin/RateAmount'));
+	}	
+
+}
+
+public function DeleteRateAmount($DeleteRateAmountid)
+{
+	$this->queries->deleteRate($DeleteRateAmountid);
+	$this->session->set_flashdata('DeleteRateAmount','Successfully Deleted Rate Amount');
+	$this->RateAmount();
+
+
+}
+
+public function EditRateAmount($EditRateAmountid)
+{
+	$data['editrateamountID']= $this->queries->editRate($EditRateAmountid);
+	$this->load->view('employee_rate_update',$data);
+}
+
+
+public function UpdateRateAmount($UpdateRateAmountid)
+{
+	$this->form_validation->set_rules('rate_amount','Rate Amount','required');	
+	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+	if ($this->form_validation->run() == FALSE)
+		{
+			$this->RateAmount();
+			
+		}
+	else
+	{
+			$updaterateAmount=$this->input->post('rate_amount');
+			$update_amount = array(
+			"rate_amount" => $updaterateAmount
+			);			
+			$this->queries->updateRate($update_amount,$UpdateRateAmountid);
+			//$this->load->view('employee_category');
+			$this->session->set_flashdata('update_amount_success','Successfully Updated Rate Amount');
+			$this->RateAmount();
+	}	
+	
+}
+
+
+// ********************************************************************************
+// ********************************************************************************
+// Create Office Accounts
+// ********************************************************************************
+// ********************************************************************************
+
+ public function OfficeAccounts()
+ {
+// 	// View Office Accounts
+ 	 $OfficeAccounts['accounts'] = $this->queries->fetchOfficeAccounts();
+ 	// print_r( $OfficeAccounts['accounts']);
+ 	 //exit();
+     $this->load->view('office_accounts',$OfficeAccounts);
+}
+
+ public function CreateOfficeAccounts()
+ {
+ // Create Office Accounts
+	$this->form_validation->set_rules('acc_name','Account Name','required');
+	$this->form_validation->set_rules('acc_number','Account Number','required');
+ 	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+	if ($this->form_validation->run() == FALSE)
+ 		{
+			$this->OfficeAccounts();
+		}
+ 	else
+		{
+			$account_name=$this->input->post('acc_name');
+			$account_number=$this->input->post('acc_number');
+
+			$accounts = array(
+			"ac_name" => $account_name,
+			"ac_number" => $account_number
+			);	
+
+ 		$this->queries->insertOfficeAccounts($accounts);
+		$this->session->set_flashdata('accountsuccess','Successfully Created New Office Accounts');
+		redirect(base_url('admin/OfficeAccounts'));
+		}
+}
+
+// public function DeleteOfficeAccount($DeleteOfficeAccount)
+// {
+// 	$this->queries->deleteOfficeAccounts($DeleteOfficeAccount);
+// 	$this->session->set_flashdata('delete','Successfully Deleted Office Account');
+// 	$this->OfficeAccounts();
+// }
+
+
+
+// public function EditOfficeAccount($EditOfficeAccount)
+// {
+// 	$data['editAccountID'] = $this->queries->editOfficeAccounts($EditOfficeAccount);
+// 	$this->load->view('office_accounts_update',$data);
+
+// }
+
+
+// public function UpdateOfficeAccount($UpdateOfficeAccountid)
+// {
+// 	$this->form_validation->set_rules('acc_name','Account Name','required');
+// 	$this->form_validation->set_rules('acc_number','Account Number','required');
+// 	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+// 	if ($this->form_validation->run() == FALSE)
+// 		{
+// 			$this->OfficeAccounts();
+// 		}
+// 	else
+// 		{
+// 		$updateaccounts = array(
+// 		'ac_name' => $this->input->post('acc_name'),
+// 		'ac_number' => $this->input->post('acc_number')
+// 		);
+
+// 		$this->queries->updateOfficeAccounts($updateaccounts,$UpdateOfficeAccountid);
+// 		$this->session->set_flashdata('Update','Successfully Updated Ofice Account');
+// 		$this->OfficeAccounts();
+
+// 		}
+
+// }
+// // ********************************************************************************
+// // ********************************************************************************
+// // Create Fund Group Name
+// // ********************************************************************************
+// // ********************************************************************************
+
+
+// public function CreateFundGroupCategory()
+// {
+// 	$this->form_validation->set_rules('group_name','fund FundGroup Category','required');
+// 	$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+// 	if ($this->form_validation->run() == FALSE)
+// 		{
+// 			$this->FundGroupCategory();
+// 		}
+	
+// 	else{
+
+// 		$fundgroup = array(
+// 		'group_name' => $this->input->post('group_name')
+// 		);
+
+// 		$this->queries->insertFundGroupCategory($fundgroup);
+// 	$this->session->set_flashdata('Successfully','Successfully Added New Fund Group Category');
+// 		$this->FundGroupCategory();
+
+// 		}
+// }
+
+
+// public function FundGroupCategory()
+// {
+// 	//$this->load->view('fundgroup_category');
+// 	$FundGroup['groups']=$this->queries->fetchFundGroupCategory();
+// 	$this->load->view('fundgroup_category',$FundGroup);
+// }
+
+
+
+
+// public function DeleteFundGroupCategory($DeleteFundGroupCategory)
+// {
+// 	$this->queries->deleteFundGroupCategory($DeleteFundGroupCategory);
+// 	$this->session->set_flashdata('fundgroupdelete','Successfully Deleted Fund Group Category');
+// 	$this->FundGroupCategory();
+
+// }
+
+
+
+// public function EditFundGroupCategory()
+// {
+
+// }
+
 
 
 

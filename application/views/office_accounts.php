@@ -1,14 +1,14 @@
 <?php include "template/header.php"; ?>
-
 <div class="row">
 <div class="col-lg-12">
 <div class="card-box">
 
 <div class="row">
 <div class="col-md-6">
-    <h3>Create Category</h3>
+    <h3>Create Office Accounts</h3>
 
-    <?php if( $updateCategory_success = $this->session->flashdata('categoryUpdate')) { ?>
+   <!--  <?php $updateCategory_success = $this->session->flashdata('update_amount_success') ?>
+     <?php if( $updateCategory_success  !='') {  ?>
     <div class="row">
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -16,28 +16,38 @@
         </div>
     </div>
     <?php } ?>
+ -->
 
 
-
-
-    <?php if( $category_success= $this->session->flashdata('category')) { ?>
+<!-- 
+    <?php  $accounts= $this->session->userdata('accountsuccess'); ?>
+    <?php if( $accounts!='') {  ?>
     <div class="row">
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <?php echo $category_success; ?>
+            <?php echo $accounts; ?>
         </div>
     </div>
-    <?php } ?>
+    <?php } ?> -->
 
 
 
-    <form action="<?php echo base_url(); ?>admin/CreateEmployeeCategory" method="POST">
+    <form action="<?php echo base_url(); ?>admin/CreateOfficeAccounts" method="POST">
         <div class="form-group">
             <!-- <label>Category<span class="text-danger">*</span></label> -->
-            <input type="text" class="form-control" name="category"
-                 placeholder="Create Category">
-            <?php echo form_error('category'); ?>
+            <input type="text" class="form-control" name="acc_name"
+                 placeholder="Office Account Name">
+            <?php echo form_error('acc_name'); ?>
         </div>
+
+         <div class="form-group">
+            <!-- <label>Category<span class="text-danger">*</span></label> -->
+            <input type="text" class="form-control" name="acc_number"
+                 placeholder="Office Account Number">
+            <?php echo form_error('acc_number'); ?>
+        </div>
+
+
 
         <div class="form-group text-left m-b-0">
             <button class="btn btn-custom waves-effect waves-light" type="submit">Submit</button>
@@ -45,48 +55,45 @@
         </div>
     </form>
 </div>
-<div class="col-md-6">
-    <h3>Your Current Categories</h3>
+ <div class="col-md-6">
+    <h3>Office Accounts </h3>
     <div class="row">
         <table class="table table-hover table-centered table-bordered">
 
             <thead>
                 <tr>
-                    <th>Category Name</th>
+                    <th>Account Name</th>
+                    <th>Account Number</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
          
 
-                <?php if( !empty($categories)) { foreach( $categories as $category) { ?>
+                <?php  foreach( $accounts as $account) { ?>
 
                 <tr>
-                    <td><?php echo $category ['cat_name']; ?></td>
-                    <td> <a href="<?php echo base_url('admin/EditEmployeeCategory/'.$category['cat_id']);?>" class="btn btn-sm btn-custom"><i class="mdi mdi-table-edit"></i></a>
-                        <a href="<?php echo base_url('admin/DeleteEmployeeCategory/'.$category['cat_id']);?>"  class="btn btn-sm btn-danger"><i class="mdi mdi-minus"></i></a></td>
+                <td><?php echo $account['ac_name'];?> </td>
+                   
                 </tr>
-                <?php } }  else{?>
-                    <tr>
-                        <td colspan="2">No category Found</td>
-                    </tr>
                 <?php } ?>
-
+                
             </tbody>
         </table>
 
-        <?php if( $category_Delete= $this->session->flashdata('categoryDeleted')) { ?>
+        <?php $rateamount_Delete= $this->session->flashdata('DeleteRateAmount') ?>
+        <?php if( $rateamount_Delete  !='') {  ?>
     <div class="row">
         <div class="alert alert-dismissible alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <?php echo $category_Delete; ?>
+            <?php echo $rateamount_Delete; ?>
         </div>
     </div>
     <?php } ?>
 
     </div>
 
-</div>
+</div> 
 </div>
 </div>
 <!-- end row -->

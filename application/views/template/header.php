@@ -109,9 +109,9 @@
             <a href="javascript: void(0);"><i class="fi-layers"></i> <span> General </span> <span class="menu-arrow"></span></a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li><a href="<?php echo base_url('admin/EmployeeCategory'); ?>">Category</a></li>
-                <li><a href="apps-tickets.html">Rate</a></li>
-                <li><a href="apps-tickets.html">CDF / LIC /FDA</a></li>
-                <li><a href="apps-tickets.html">Office Accounts</a></li>
+                <li><a href="<?php echo base_url('admin/RateAmount'); ?>">Rate</a></li>
+                <li><a href="<?php echo base_url('admin/FundGroupCategory'); ?>">CDF / LIC /FDA</a></li>
+                <li><a href="<?php echo base_url('admin/OfficeAccounts'); ?>">Office Accounts</a></li>
             
             </ul>
             </li>
