@@ -197,6 +197,35 @@ public function deleteFundGroupCategory($DeleteFundGroupCategory)
 
 
 
+// ********************************************************************************
+// ********************************************************************************
+// Salary
+// ********************************************************************************
+// ********************************************************************************
+
+
+//fetch Employee for Salary
+
+public function fetchEmployeeforSalary($designation_id){
+    $this->db->where('emp_designation_id',$designation_id);
+    $query=$this->db->get('employee');
+    return $query->result();
+}
+
+
+public function get_employee_account($employee_id){
+
+    $this->db->where('emp_id',$employee_id);
+    $query=$this->db->get('employee');
+    return $query->row();
+    
+}
+
+
+
+
+
+
 
 
 

@@ -89,7 +89,7 @@
 <li>
     <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Salary </span> <span class="menu-arrow"></span></a>
     <ul class="nav-second-level" aria-expanded="false">
-        <li><a href="apps-calendar.html">Add Salary</a></li>
+        <li><a href="<?php echo base_url('admin/salary'); ?>">Add Salary</a></li>
         <li><a href="apps-tickets.html">View Salary</a></li>
     
     </ul>

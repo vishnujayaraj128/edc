@@ -6,7 +6,9 @@ class admin extends CI_Controller {
 	public function __construct(){
 		parent:: __construct();
 		$this->load->model('queries');
+		$this->load->helper('security');	
 	}
+
 	public function index()
 	{
 		// dashboard
@@ -40,7 +42,8 @@ class admin extends CI_Controller {
 			$employeeCategory=$this->input->post('category');
 			$category = array(
 			"cat_name" => $employeeCategory
-			);			
+			);	
+			$category=$this->security->xss_clean($category);			
 			$this->queries->insertCategory($category);
 			//$this->load->view('employee_category');
 			$this->session->set_flashdata('category','Successfully Created New Category');
@@ -85,7 +88,8 @@ class admin extends CI_Controller {
 			$employeeUpdateCategory=$this->input->post('category');
 			$updateCategory = array(
 			"cat_name" => $employeeUpdateCategory
-			);			
+			);	
+
 			$this->queries->updateCategory($updateCategory,$categoryUpdateID);
 			$this->session->set_flashdata('categoryUpdate','Successfully Updated Category');
 			$this->EmployeeCategory();
@@ -476,6 +480,11 @@ public function UpdateOfficeAccount($UpdateOfficeAccountid)
 
 
 
+// ********************************************************************************
+// ********************************************************************************
+// Rate
+// ********************************************************************************
+// ********************************************************************************
 
 
 
@@ -483,6 +492,71 @@ public function UpdateOfficeAccount($UpdateOfficeAccountid)
 
 
 
+
+
+
+
+
+
+
+// ********************************************************************************
+// ********************************************************************************
+// Salary
+// ********************************************************************************
+// ********************************************************************************
+
+
+// Create Salary
+
+
+public function salary()
+{
+// view EmployeeCategory
+
+$data['categories']=$this->queries->fetchCategory();
+
+$data['rates']= $this->queries->fetchRate();
+
+	$this->load->view('employee_salary', $data );
+}
+
+
+public function get_employee_for_salary()
+{
+	$designation_id=$this->input->post('user_designation');
+	$users=$this->queries->fetchEmployeeforSalary($designation_id);
+	if(count($users)>0)
+	{
+			$users_select_box='';
+			$users_select_box.='<option value="">Select User</option>';
+
+			foreach ($users as $user) 
+            {
+				$users_select_box.='<option value="'.$user->emp_id.'"> '.$user->emp_name.' </option>';
+			}
+
+			echo json_encode($users_select_box);
+
+	}
+}
+
+
+
+public function get_employee_account_number(){
+
+	$employee_id=$this->input->post('employee_id');
+	$employee_account_number=$this->queries->get_employee_account($employee_id);
+
+	if(count($employee_account_number)>0)
+	
+	{
+		$employee_select_box= "Account Number: ". $employee_account_number->emp_account_number;
+	
+	}
+
+	echo json_encode($employee_select_box);
+
+}
 
 
 
